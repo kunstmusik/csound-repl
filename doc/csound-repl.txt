@@ -1,0 +1,55 @@
+*csound-repl.txt* Plugin for live coding with Csound
+
+Author: Steven Yi <stevenyi@gmail.com> 
+License: MIT 
+
+INTRODUCTION                                                     *csound-repl*
+
+This plugin provides basic functionality to send Csound code over UDP to a
+running instance of Csound. This will allow you to interactively evaluate and
+compile new instruments and UDOs, update existing instruments and UDOs, as
+well as execute opcode calls in instrument 0 space.
+
+This plugin is best used together with Luis Jure's csound-vim plugin
+(https://github.com/ljure/csound).
+
+
+REQUIREMENTS                                        *csound-repl:requirements*
+
+This plugin requires that the version of Vim used has Python support built-in. 
+
+SETTING UP CSOUND REPL                                     *csound-repl:setup*
+
+csound-repl is preconfigured to run with UDP port 10000. If you need to use a
+different port, execute the command ":call Csound_set_port(portNumber)" with
+the port number you would like to use.
+
+Currently, Csound itself should be started in a separate terminal with the
+--port command. For example: 
+
+  csound --port=10000 some.csd
+
+This will begin Csound in server mode and evaluate some.csd as initial code.
+Once Csound is running, you will be able to use this plugin to evaluate and
+send code to that running Csound instance. 
+
+EVALUATING CODE                                             *csound-repl:eval*
+
+
+                                                    *csound-repl:evaluate_orc*
+<leader>eo              Evaluate selected Csound code as Orchestra code.
+
+                                                    *csound-repl:evaluate_sco*
+<leader>es              Evaluate selected Csound code as Score code.
+                        (Does not currently work as Csound Server mode only
+                        accepts orchestra code at this time.)
+
+
+ABOUT                                                     *csound-repl:about*
+
+Grab the latest version or report a bug on GitHub:
+
+http://github.com/kunstmusik/csound-repl
+
+
+ vim:tw=78:ts=8:ft=help:norl:
