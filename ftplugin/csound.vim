@@ -22,7 +22,6 @@ EOF
 endif
 
 function! s:send_to_csound(payload)
-
   if(!has('python'))
     echom "Error: csound-repl requires python"
   else
@@ -44,10 +43,8 @@ endfunction
 
 
 function! Csound_eval_sco()
-  echom "Error: Csound does not accept SCO input over UDP at this time."
-  "normal! `<v`>y
-  "echom "EvaluatingScore"
-  "call s:send_to_csound(@@)
+  normal! `<v`>y
+  call s:send_to_csound("$" . @@)
 endfunction
 
 vnoremap <silent> <leader>eo :<c-u>call Csound_eval_orc()<CR>
