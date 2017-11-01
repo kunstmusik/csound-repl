@@ -47,5 +47,13 @@ function! Csound_eval_sco()
   call s:send_to_csound("$" . @@)
 endfunction
 
+function! Csound_eval_orc_n()
+  "normal! :?instr?;/endin/y
+  exec "?instr?;/endin/y"
+  call s:send_to_csound(@@)
+endfunction
+
 vnoremap <silent> <leader>eo :<c-u>call Csound_eval_orc()<CR>
+nnoremap <silent> <leader>eo :<c-u>call Csound_eval_orc_n()<CR>
+
 vnoremap <silent> <leader>es :call Csound_eval_sco()<CR>
