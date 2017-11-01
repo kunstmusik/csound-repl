@@ -52,6 +52,15 @@ function! Csound_eval_orc_n()
   let start = search("instr", 'bc')
   let end = search("endin")
   call s:send_to_csound(join(getline(start,end), "\n"))
+
+  call setpos('.', [0, start, 0, 0])
+  exec "normal V"
+  call setpos('.', [0, end,0,0])
+
+  redraw
+  sleep 200 m
+
+  exec "normal vv"
   call setpos('.', savepos)
 endfunction
 
