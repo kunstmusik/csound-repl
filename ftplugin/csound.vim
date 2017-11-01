@@ -48,9 +48,11 @@ function! Csound_eval_sco()
 endfunction
 
 function! Csound_eval_orc_n()
-  "normal! :?instr?;/endin/y
-  exec "?instr?;/endin/y"
-  call s:send_to_csound(@@)
+  let savepos = getpos(".")
+  let start = search("instr", 'bc')
+  let end = search("endin")
+  call s:send_to_csound(join(getline(start,end), "\n"))
+  call setpos('.', savepos)
 endfunction
 
 vnoremap <silent> <leader>eo :<c-u>call Csound_eval_orc()<CR>
