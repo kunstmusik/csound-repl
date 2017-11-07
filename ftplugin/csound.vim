@@ -64,7 +64,34 @@ function! Csound_eval_orc_n()
   call setpos('.', savepos)
 endfunction
 
+
+function! Csound_insert_hexplay()
+  let l:fadeCounter = get(b:, "fadeCounter", 5)
+  let b:fadeCounter = l:fadeCounter + 1
+
+  "This is depending upon the formatting rules of user's Vim to look alright 
+  let l:hexCode = "hexplay(\"fade\", ibeat,\n" .
+                \ "    \"S1\", p3,\n" . 
+                \ "in_scale(-1, 0),\n" . 
+                \ "fade_in(" . l:fadeCounter . ", 128) * ampdbfs(-12))\n"
+  return l:hexCode
+endfunction
+
+function! Csound_insert_euclidplay()
+  let l:fadeCounter = get(b:, "fadeCounter", 5)
+  let b:fadeCounter = l:fadeCounter + 1
+
+  "This is depending upon the formatting rules of user's Vim to look alright 
+  let l:euclidCode = "euclidplay(13, 32, ibeat,\n" .
+                \ "    \"S1\", p3,\n" . 
+                \ "in_scale(-1, 0),\n" . 
+                \ "fade_in(" . l:fadeCounter . ", 128) * ampdbfs(-12))\n"
+  return l:euclidCode
+endfunction
+
 vnoremap <silent> <leader>eo :<c-u>call Csound_eval_orc()<CR>
 nnoremap <silent> <leader>eo :<c-u>call Csound_eval_orc_n()<CR>
 
 vnoremap <silent> <leader>es :call Csound_eval_sco()<CR>
+inoremap <silent> <C-h> <C-R>= Csound_insert_hexplay()<CR>
+inoremap <silent> <C-j> <C-R>= Csound_insert_euclidplay()<CR>
