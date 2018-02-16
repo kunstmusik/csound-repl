@@ -70,7 +70,7 @@ function! Csound_insert_hexplay()
   let b:fadeCounter = l:fadeCounter + 1
 
   "This is depending upon the formatting rules of user's Vim to look alright 
-  let l:hexCode = "hexplay(\"fade\", ibeat,\n" .
+  let l:hexCode = "hexplay(\"fade\", \n" .
                 \ "    \"S1\", p3,\n" . 
                 \ "in_scale(-1, 0),\n" . 
                 \ "fade_in(" . l:fadeCounter . ", 128) * ampdbfs(-12))\n"
@@ -82,7 +82,7 @@ function! Csound_insert_euclidplay()
   let b:fadeCounter = l:fadeCounter + 1
 
   "This is depending upon the formatting rules of user's Vim to look alright 
-  let l:euclidCode = "euclidplay(13, 32, ibeat,\n" .
+  let l:euclidCode = "euclidplay(13, 32,\n" .
                 \ "    \"S1\", p3,\n" . 
                 \ "in_scale(-1, 0),\n" . 
                 \ "fade_in(" . l:fadeCounter . ", 128) * ampdbfs(-12))\n"
