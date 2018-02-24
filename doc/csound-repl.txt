@@ -37,7 +37,12 @@ EVALUATING CODE                                             *csound-repl:eval*
 
 
                                                     *csound-repl:evaluate_orc*
-<leader>eo              Evaluate selected Csound code as Orchestra code.
+<leader>eo              In visual mode, evaluates selected Csound code as 
+                        Orchestra code.
+
+                        In normal mode, it will select the surrounding UDO or
+                        instrument (if found) and evaluate that. Otherwise,
+                        will evaluate the current line.
 
                                                     *csound-repl:evaluate_sco*
 <leader>es              Evaluate selected Csound code as Score code.

@@ -49,17 +49,30 @@ endfunction
 
 function! Csound_eval_orc_n()
   let savepos = getpos(".")
-  let start = search("instr", 'bc')
-  let end = search("endin")
-  call s:send_to_csound(join(getline(start,end), "\n"))
+  let start = search("^\s*instr", 'bc')
+  let end = search("^\s*endin")
 
-  call setpos('.', [0, start, 0, 0])
-  exec "normal V"
-  call setpos('.', [0, end,0,0])
+  let startop = search("^\s*opcode", 'bc')
+  let endop = search("^\s*endop")
+
+  if savepos[1] > startop && savepos[1] < endop
+    call s:send_to_csound(join(getline(startop,endop), "\n"))
+    call setpos('.', [0, startop, 0, 0])
+    exec "normal V"
+    call setpos('.', [0, endop,0,0])
+  elseif savepos[1] > start && savepos[1] < end
+    call s:send_to_csound(join(getline(start,end), "\n"))
+    call setpos('.', [0, start, 0, 0])
+    exec "normal V"
+    call setpos('.', [0, end,0,0])
+  else
+    call s:send_to_csound(getline(savepos[1]))
+    call setpos('.', [0, savepos[1], 0, 0])
+    exec "normal V"
+  endif
 
   redraw
   sleep 200 m
-
   exec "normal vv"
   call setpos('.', savepos)
 endfunction
