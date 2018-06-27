@@ -52,6 +52,7 @@ function! Csound_eval_orc_n()
   let start = search("^\s*instr", 'bc')
   let end = search("^\s*endin")
 
+  call setpos('.', [0, savepos[1], 0, 0])
   let startop = search("^\s*opcode", 'bc')
   let endop = search("^\s*endop")
 
