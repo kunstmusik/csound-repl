@@ -11,6 +11,10 @@ For example, using Vundle, you can use the following entry in your .vimrc file:
 
 ```Plugin "kunstmusik/csound-repl"```
 
+## Requirements
+
+* Vim with either python or python3 support enabled
+
 ## License
 
 Copyright © Steven Yi.  Distributed under the MIT license.

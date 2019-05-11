@@ -7,9 +7,8 @@
 
 if !exists("g:csound_repl_load") || &cp
   let g:csound_repl_load = 1
-  if(!has('python'))
-    echom "Error: Csound REPL requires python."
-  else
+  if(has('python'))
+
 python << EOF
 import socket
 import vim
@@ -18,17 +17,36 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 server = "127.0.0.1"
 port = 10000 
 EOF
+
+  elseif(has('python3'))
+python3 << EOF
+import socket
+import vim
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+server = "127.0.0.1"
+port = 10000 
+EOF
+
+  else
+    echom "Error: Csound REPL requires python."
   endif
 endif
 
 function! s:send_to_csound(payload)
-  if(!has('python'))
-    echom "Error: csound-repl requires python"
-  else
+  if(has('python'))
 python << EOF
 message = vim.eval("a:payload")
 sock.sendto(message, (server, port)) 
 EOF
+  elseif(has('python3'))
+
+python3 << EOF
+message = vim.eval("a:payload").encode()
+sock.sendto(message, (server, port)) 
+EOF
+  else
+    echom "Error: csound-repl requires python"
   endif
 endfunction
 
