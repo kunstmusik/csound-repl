@@ -13,10 +13,14 @@ well as execute opcode calls in instrument 0 space.
 This plugin is best used together with Luis Jure's csound-vim plugin
 (https://github.com/ljure/csound).
 
-
 REQUIREMENTS                                        *csound-repl:requirements*
 
-This plugin requires that the version of Vim used has Python support built-in. 
+This plugin requires that the version of Vim used has Python or Python3 support built-in. 
+
+FILE TYPES                                              *csound-repl:filetypes*
+
+csound-repl work with csound filetypes (i.e., .orc, .sco, .csd, .udo).
+
 
 SETTING UP CSOUND REPL                                     *csound-repl:setup*
 
