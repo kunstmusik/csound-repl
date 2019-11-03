@@ -77,12 +77,12 @@ function! Csound_eval_orc_n()
   let endop = search('^\s*endop', 'c')
 
   if savepos[1] >= startop && savepos[1] <= endop
-    call s:send_to_csound(join(getline(startop,endop), '\n'))
+    call s:send_to_csound(join(getline(startop,endop), "\n"))
     call setpos('.', [0, startop, 0, 0])
     exec "normal V"
     call setpos('.', [0, endop,0,0])
   elseif savepos[1] >= start && savepos[1] <= end
-    call s:send_to_csound(join(getline(start,end), '\n'))
+    call s:send_to_csound(join(getline(start,end), "\n"))
     call setpos('.', [0, start, 0, 0])
     exec "normal V"
     call setpos('.', [0, end,0,0])
